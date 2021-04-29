@@ -1,7 +1,7 @@
 const helpers = require('bee-queue/lib/helpers');
 const PgBoss = require('pg-boss');
 const JSONdb = require('simple-json-db');
-const db = new JSONdb('../results/database.json');
+const db = new JSONdb('./results/database.json');
 
 
 const boss = new PgBoss('postgres://postgres@localhost/postgres');

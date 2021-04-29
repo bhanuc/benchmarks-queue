@@ -3,7 +3,7 @@ const kue = require('kue');
 const queue = kue.createQueue();
 
 const JSONdb = require('simple-json-db');
-const db = new JSONdb('../results/database.json');
+const db = new JSONdb('./results/database.json');
 
 
 // A promise-based barrier.

@@ -1,7 +1,7 @@
 const helpers = require('bee-queue/lib/helpers');
 const Queue = require('bee-queue');
 const JSONdb = require('simple-json-db');
-const db = new JSONdb('../results/database.json');
+const db = new JSONdb('./results/database.json');
 
 const queue = new Queue(
   'test',
