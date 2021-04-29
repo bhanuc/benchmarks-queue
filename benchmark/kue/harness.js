@@ -1,4 +1,4 @@
-const helpers = require('../../lib/helpers');
+const helpers = require('bee-queue/lib/helpers');
 const kue = require('kue');
 const queue = kue.createQueue();
 

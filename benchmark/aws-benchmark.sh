@@ -13,17 +13,17 @@ DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 WDIR=`mktemp -d`
 ODIR="$(pwd)"
 
-cp -R "$DIR/../" "$WDIR/bee-queue"
+cp -R "$DIR/../" "$WDIR/benchmarks-queue"
 
 sudo yum groupinstall -y 'Development Tools'
 sudo yum install -y htop
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
 source ~/.bashrc
 
-redis_versions='3.2.10 4.0.1'
-node_versions='6.9.1 6 7.6.0 7 8.2.1 node'
+redis_versions='3.2.10 4.0.1 5.0.12 6.2.2'
+node_versions='6.17.1 8.17.0 10.24.1 12.22.1 14.16.1 16.0.0 node'
 
-libraries='bq-min bull bq bq-0 kue'
+libraries='bq-min bull bq kue'
 
 for redis_version in $redis_versions; do
   cd "$WDIR"
@@ -46,17 +46,17 @@ function redis_info () {
   "$redis_dir/redis-cli" INFO CPU | grep -E '^used_cpu_(?:sys|user)\b'
 }
 
-cd "$WDIR/bee-queue"
+cd "$WDIR/benchmarks-queue"
 npm install
-npm install kue bull
+# npm install kue bull
 
 # also test bee-queue@0.x
-cp -R "$WDIR/bee-queue/benchmark/bq" "$WDIR/bee-queue/benchmark/bq-0"
-mkdir "$WDIR/bee-queue/benchmark/bq-0/node_modules"
-cd "$WDIR/bee-queue/benchmark/bq-0"
+cp -R "$WDIR/benchmarks-queue/benchmark/bq" "$WDIR/benchmarks-queue/benchmark/bq-0"
+mkdir "$WDIR/benchmarks-queue/benchmark/bq-0/node_modules"
+cd "$WDIR/benchmarks-queue/benchmark/bq-0"
 npm install bee-queue@0
 
-cd "$WDIR/bee-queue/benchmark"
+cd "$WDIR/benchmarks-queue/benchmark"
 
 # lotta combinations here :D
 for redis_version in $redis_versions; do

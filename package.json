@@ -1,9 +1,12 @@
 {
-  "name": "bee-queue",
-  "version": "1.3.1",
-  "description": "A simple, fast, robust job/task queue, backed by Redis.",
+  "name": "benchmark-queue",
+  "version": "0.0.1",
+  "description": "Independent Node.js Queue benchmarks ",
   "main": "index.js",
   "dependencies": {
+    "bee-queue": "^1.3.1",
+    "bull": "^3.22.4",
+    "kue": "^0.11.6",
     "p-finally": "^1.0.0",
     "promise-callbacks": "^3.8.1",
     "redis": "^2.7.1"
@@ -59,22 +62,25 @@
     "distributed",
     "system",
     "redis",
+    "benchmark",
+    "node.js",
     "lua"
   ],
   "engines": {
     "node": ">= 4"
   },
-  "author": "Lewis J Ellis <me@lewisjellis.com>",
+  "author": "Bhanu P Chaudhary <me@bhanu.io>",
   "contributors": [
-    "Eli Skeggs <dev@eliskeggs.com> (https://eli.skeg.gs)"
+    "Eli Skeggs <dev@eliskeggs.com> (https://eli.skeg.gs)",
+    "Lewis J Ellis <me@lewisjellis.com>"
   ],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bee-queue/bee-queue.git"
+    "url": "https://github.com/bhanuc/benchmarks-queue.git"
   },
   "bugs": {
-    "url": "https://github.com/bee-queue/bee-queue/issues"
+    "url": "https://github.com/bhanuc/benchmarks-queue/issues"
   },
-  "homepage": "https://github.com/bee-queue/bee-queue"
+  "homepage": "https://github.com/bhanuc/benchmarks-queue"
 }

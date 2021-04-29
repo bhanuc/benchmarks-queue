@@ -1,5 +1,5 @@
-const helpers = require('../../lib/helpers');
-const Queue = require('../..');
+const helpers = require('bee-queue/lib/helpers');
+const Queue = require('bee-queue');
 const queue = new Queue(
   'test',
   process.env.BQ_MINIMAL
