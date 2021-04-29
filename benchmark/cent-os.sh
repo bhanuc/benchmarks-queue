@@ -16,8 +16,8 @@ ODIR="$(pwd)"
 cp -R "$DIR/../" "$WDIR/benchmarks-queue"
 
 sudo yum groupinstall -y 'Development Tools'
-sudo yum install -y htop
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
+sudo yum install -y htop pkgconfig
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
 source ~/.bashrc
 
 redis_versions='3.2.10 4.0.1 5.0.12 6.2.2'
