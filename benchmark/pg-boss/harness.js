@@ -1,7 +1,10 @@
 const helpers = require('bee-queue/lib/helpers');
 const PgBoss = require('pg-boss');
+const JSONdb = require('simple-json-db');
+const db = new JSONdb('../results/database.json');
 
-const boss = new PgBoss('postgres://postgres:password123 @localhost/postgres');
+
+const boss = new PgBoss('postgres://postgres@localhost/postgres');
 
 boss.on('error', error => console.error(error));
 
@@ -49,6 +52,9 @@ module.exports = async (options) => {
 
   await done();
   const elapsed = Date.now() - startTime;
+  const resultJSON = {elapsed, runs: process.env.NUM_RUNS,concurrency: process.env.CONCURRENCY, driver: "pg-boss"};
+  const key = `PG_Boss_${resultJSON.runs}_${resultJSON.concurrency}`;
+  db.set(key, JSON.stringify(resultJSON));
     const promise = helpers.deferred();
     await  boss.deleteQueue(queue);
   console.log('deleteQueue');

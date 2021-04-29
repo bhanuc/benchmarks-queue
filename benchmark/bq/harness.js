@@ -1,5 +1,8 @@
 const helpers = require('bee-queue/lib/helpers');
 const Queue = require('bee-queue');
+const JSONdb = require('simple-json-db');
+const db = new JSONdb('../results/database.json');
+
 const queue = new Queue(
   'test',
   process.env.BQ_MINIMAL
@@ -45,6 +48,10 @@ module.exports = (options) => {
       }
       return done.then(() => {
         const elapsed = Date.now() - startTime;
+        const resultJSON = {elapsed, runs: process.env.NUM_RUNS,concurrency: process.env.CONCURRENCY, driver: "Bee-Queue"};
+        const bq_minimal = process.env.BQ_MINIMAL;
+        const key = `BQ_${bq_minimal}_${resultJSON.runs}_${resultJSON.concurrency}`;
+        db.set(key, JSON.stringify(resultJSON));
         return queue.close().then(() => resolve(elapsed));
       });
     });
