@@ -48,9 +48,9 @@ module.exports = async (options) => {
   for (let i = 0; i < options.numRuns; ++i) {
     await boss.publish(queue, {i});
   }
-  console.log('publish');
+  console.log('publish done');
 
-  await done();
+  // await done();
   const elapsed = Date.now() - startTime;
   const resultJSON = {elapsed, runs: process.env.NUM_RUNS,concurrency: process.env.CONCURRENCY, driver: "pg-boss"};
   const key = `PG_Boss_${resultJSON.runs}_${resultJSON.concurrency}`;
@@ -58,13 +58,7 @@ module.exports = async (options) => {
     const promise = helpers.deferred();
     await  boss.deleteQueue(queue);
   console.log('deleteQueue');
-
-  //   return promise.then(() => elapsed);
-  // return done.then(async () => {
-  // console.log('done');
-
-    
-  // });
+  return elapsed;
 };
 
 if (require.main === module) {
